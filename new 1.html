@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<style>
+ul {
+    list-style-type: none;
+    margin: 2;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+	a-color: #333;
+}
+</style>
+</head>
+<body>
+<form ng-app="" name="myForm">
+	<p>
+	<input type="text" name="reach" ng-model="text" style="float:right"><br>
+	</p>
+
+	<p>
+	<ul>
+	<li><a href="#home">邮箱</a></li>
+	<li><a href="#news">联系人</a></li>
+	<li><a href="#contact">日历</a></li>
+	<li><a href="#mission">任务</a></li>
+	<li><a href="#briefcase">公文包</a></li> 
+	<li><a href="#first_choice">首选项</a></li>
+	<li><a href="#problem">常见问题</a></li>
+	<li><a class="active" href="#about">写信</a></li>
+	</ul>
+	</p>
+	
+	<p>
+	<button ng-click="send()">发送</button>
+	<button ng-click="cancel()">取消</button>
+	<button ng-click="save()">保存草稿</button>
+	<button ng-click="check()">检查拼写</button>
+	<button ng-click="option()">选项</button>
+	</p>
+	
+    <p>
+    <button ng-click="reciver()">收件人：</button>
+    <input type="email" name="myAddress" ng-model="text1" col="195">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+	</p>
+	
+	<p>
+	<button ng-click="copy()">抄送：</button>
+	<input type="email" name="myAddress" ng-model="text2" col="195">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+	</p>
+	
+	<p>
+	主题：
+	<input type="topic" name="myTopic" ng-model="text3" col="195">
+	</p>
+	
+	<p>
+	<button ng-click="add()">附加：</button>
+	<input type="file" name="myFile" ng-model="text4" col="195">
+	</p>
+	
+	<p><textarea ng-model="message" cols="195" rows="33"></textarea></p>
+</form>
+
+</body>
+</html>
