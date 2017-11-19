@@ -31,12 +31,14 @@ li a:hover {
     background-color: #4CAF50;
 	a-color: #333;
 }
+
+
 </style>
 </head>
 <body>
-<form ng-app="" name="myForm">
+<form name ="myForm" ng-app="myApp" ng-controller="myCtrl">
 	<p>
-	<input type="text" name="reach" ng-model="text" style="float:right"><br>
+	<input type="text" name="search" ng-model="search" style="float:right"><br>
 	</p>
 
 	<p>
@@ -57,33 +59,40 @@ li a:hover {
 	<button ng-click="cancel()">取消</button>
 	<button ng-click="save()">保存草稿</button>
 	<button ng-click="check()">检查拼写</button>
-	<button ng-click="option()">选项</button>
 	</p>
 	
     <p>
     <button ng-click="reciver()">收件人：</button>
-    <input type="email" name="myAddress" ng-model="text1" col="195">
-    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    <input type="email" name="reciverAddress" ng-model="reciverAddress" size="214" requied>
+	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
+    <span ng-show="myForm.reciverAddress.$error.reciverAddress.">不是一个合法的邮箱地址</span>
 	</p>
 	
 	<p>
 	<button ng-click="copy()">抄送：</button>
-	<input type="email" name="myAddress" ng-model="text2" col="195">
-    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+	<input type="email" name="copyAddress" ng-model="copyAddress" size="216">
+    <span ng-show="myForm.email.$error.email" >不是一个合法的邮箱地址</span>
 	</p>
 	
 	<p>
 	主题：
-	<input type="topic" name="myTopic" ng-model="text3" col="195">
+	<input type="text" name="myTopic" ng-model="topic" requied size="217">
 	</p>
 	
 	<p>
 	<button ng-click="add()">附加：</button>
-	<input type="file" name="myFile" ng-model="text4" col="195">
+	<input type="file" name="myFile" ng-model="file">
 	</p>
 	
-	<p><textarea ng-model="message" cols="195" rows="33"></textarea></p>
+	<p><textarea ng-model="text" cols="196" rows="31"></textarea></p>
 </form>
-
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope) {
+		$scope.search="搜索";
+		$scope.reciverAddress='123@123.com';
+		$scope.text='';
+	});
+</script>
 </body>
 </html>
