@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <style>
 ul {
     list-style-type: none;
@@ -28,10 +32,12 @@ li a:hover {
     background-color: #4CAF50;
 	a-color: #333;
 }
+
 </style>
 </head>
-<body>
+<body style="background: #fff url(img/body-bg-1.png) repeat;">
 <form name ="myForm" ng-app="myApp" ng-controller="myCtrl" novalidate>
+
 	<p>
 	<ul>
 	<li><a href="#home">邮箱</a></li>
@@ -46,44 +52,45 @@ li a:hover {
 	</p>
 	
 	<p>
-	<button ng-click="send()" ng-disabled="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid || myForm.myTopic.$invalid">发送</button>
-	<button ng-click="cancel()">取消</button>
-	<button ng-click="save()">保存草稿</button>
-	<button ng-click="check()" ng-disabled="myForm.myText.$pristine">检查拼写</button>
-	<button ng-click="log_in()" style="float:right">登入</button>
-	<input type="text" name="search" ng-model="search"  style="float:right">
+	<button ng-click="send()" ng-disabled="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid || myForm.myTopic.$invalid" style="margin-left:5px" class="btn btn-info">发送</button>
+	<button ng-click="cancel()" class="btn btn-info">取消</button>
+	<button ng-click="save()" class="btn btn-info">保存草稿</button>
+	<button ng-click="check()" class="btn btn-info" ng-disabled="myForm.myText.$pristine">检查拼写</button>
+	<button ng-click="log_in()" style="float:right;margin-left:5px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">登入</button>
+	<input type="text" name="search" ng-model="search" class="form-control" style="float:right;width:250px" placeholder="搜索">
+	<button class="btn btn-secondary" type="button" style="float:right">Go!</button>
 	</p>
 	
     <p>
-    <button ng-click="reciver()">收件人：</button>
-    <input type="email" name="reciverAddress" ng-model="reciverAddress" size="214">
+	<button ng-click="send()" style="margin-left:5px">收件人：</button>
+    <input type="email" class="form-control" name="reciverAddress" ng-model="reciverAddress" placeholder="123@email" style="width:100%">
 	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
-    <span ng-show="myForm.reciverAddress.$error.reciverAddress.">*</span>
+    <span ng-show="myForm.reciverAddress.$error.reciverAddress.">*请输入正确的邮箱</span>
 	</p>
 	
 	<p>
-	<button ng-click="copy()" size="50">抄送：</button>
-	<input type="email" name="copyAddress" ng-model="copyAddress" size="216">
+	<button ng-click="copy()" style="margin-left:5px">抄送：</button>
+	<input type="email" class="form-control" name="copyAddress" ng-model="copyAddress" placeholder="123@email" style="width:100%">
 	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
-    <span ng-show="myForm.email.$error.email" >*</span>
+    <span ng-show="myForm.email.$error.email" >*请输入正确的邮箱</span>
 	</p>
 	
 	<p>
-	主题：
-	<input type="text" name="myTopic" ng-model="myTopic" size="217" required>
+	<span style="margin-left:10px;margin-right:10px">主题：</span>
+	<input type="text" class="form-control" name="myTopic" ng-model="myTopic"required style="width:100%">
 	</p>
 	
 	<p>
-	<button ng-click="add()">附加：</button>
-	<input type="file" name="myFile" ng-model="myFile" size="205">
+	<button ng-click="add()" style="margin-left:5px">附加：</button>
+	<input type="text" class="form-control" name="myFile" ng-model="myFile" style="width:100%">	
 	</p>
 	
-	<p><textarea name="myText" ng-model="myText" cols="196" rows="31"></textarea></p>
+	<p><textarea name="myText" class="form-control" ng-model="myText" rows="15" style="width:100"></textarea></p>
+
 </form>
 <script>
 	var app = angular.module('myApp', []);
 	app.controller('myCtrl', function($scope) {
-		$scope.search="搜索";
 	});
 </script>
 </body>
