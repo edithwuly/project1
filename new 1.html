@@ -11,11 +11,9 @@ ul {
     overflow: hidden;
     background-color: #333;
 }
-
 li {
     float: left;
 }
-
 li a {
     display: block;
     color: white;
@@ -23,7 +21,6 @@ li a {
     padding: 10px 14px;
     text-decoration: none;
 }
-
 li a:hover {
     background-color: #111;
 }
@@ -31,11 +28,10 @@ li a:hover {
     background-color: #4CAF50;
 	a-color: #333;
 }
-
 </style>
 </head>
 <body>
-<form name ="myForm" ng-app="myApp" ng-controller="myCtrl">
+<form name ="myForm" ng-app="myApp" ng-controller="myCtrl" novalidate>
 	<p>
 	<ul>
 	<li><a href="#home">邮箱</a></li>
@@ -50,38 +46,39 @@ li a:hover {
 	</p>
 	
 	<p>
-	<button ng-click="send()">发送</button>
+	<button ng-click="send()" ng-disabled="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid || myForm.myTopic.$invalid">发送</button>
 	<button ng-click="cancel()">取消</button>
 	<button ng-click="save()">保存草稿</button>
-	<button ng-click="check()">检查拼写</button>
+	<button ng-click="check()" ng-disabled="myForm.myText.$pristine">检查拼写</button>
 	<button ng-click="log_in()" style="float:right">登入</button>
 	<input type="text" name="search" ng-model="search"  style="float:right">
 	</p>
 	
     <p>
     <button ng-click="reciver()">收件人：</button>
-    <input type="email" name="reciverAddress" ng-model="reciverAddress" size="214" requied>
-	<span ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
-    <span ng-show="myForm.reciverAddress.$error.reciverAddress.">不是一个合法的邮箱地址</span>
+    <input type="email" name="reciverAddress" ng-model="reciverAddress" size="214">
+	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
+    <span ng-show="myForm.reciverAddress.$error.reciverAddress.">*</span>
 	</p>
 	
 	<p>
-	<button ng-click="copy()">抄送：</button>
+	<button ng-click="copy()" size="50">抄送：</button>
 	<input type="email" name="copyAddress" ng-model="copyAddress" size="216">
-    <span ng-show="myForm.email.$error.email" >不是一个合法的邮箱地址</span>
+	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
+    <span ng-show="myForm.email.$error.email" >*</span>
 	</p>
 	
 	<p>
 	主题：
-	<input type="text" name="myTopic" ng-model="topic" requied size="217">
+	<input type="text" name="myTopic" ng-model="myTopic" size="217" required>
 	</p>
 	
 	<p>
 	<button ng-click="add()">附加：</button>
-	<input type="file" name="myFile" ng-model="file">
+	<input type="file" name="myFile" ng-model="myFile" size="205">
 	</p>
 	
-	<p><textarea ng-model="text" cols="196" rows="31"></textarea></p>
+	<p><textarea name="myText" ng-model="myText" cols="196" rows="31"></textarea></p>
 </form>
 <script>
 	var app = angular.module('myApp', []);
