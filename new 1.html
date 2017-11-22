@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <style>
 ul {
     list-style-type: none;
@@ -35,8 +32,8 @@ li a:hover {
 
 </style>
 </head>
-<body style="background: #fff url(img/body-bg-1.png) repeat;">
-<form name ="myForm" ng-app="myApp" ng-controller="myCtrl" novalidate>
+<body style="background: #fff url(img/body-bg-1.png) repeat;" ng-app="myApp" ng-controller="myCtrl" novalidate>
+<form name="myForm">
 
 	<p>
 	<ul>
@@ -52,11 +49,10 @@ li a:hover {
 	</p>
 	
 	<p>
-	<button ng-click="send()" ng-disabled="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid || myForm.myTopic.$invalid" style="margin-left:5px" class="btn btn-info">发送</button>
+	<button ng-click="send()" style="margin-left:5px" ng-disabled="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid || myForm.myTopic.$invalid" class="btn btn-info">发送</button>
 	<button ng-click="cancel()" class="btn btn-info">取消</button>
 	<button ng-click="save()" class="btn btn-info">保存草稿</button>
-	<button ng-click="check()" class="btn btn-info" ng-disabled="myForm.myText.$pristine">检查拼写</button>
-	<button ng-click="log_in()" style="float:right;margin-left:5px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">登入</button>
+	<button ng-click="log_in()" style="float:right;margin-left:5px" class="btn btn-primary">登入</button>
 	<input type="text" name="search" ng-model="search" class="form-control" style="float:right;width:250px" placeholder="搜索">
 	<button class="btn btn-secondary" type="button" style="float:right">Go!</button>
 	</p>
@@ -71,8 +67,8 @@ li a:hover {
 	<p>
 	<button ng-click="copy()" style="margin-left:5px">抄送：</button>
 	<input type="email" class="form-control" name="copyAddress" ng-model="copyAddress" placeholder="123@email" style="width:100%">
-	<span style="color:red" ng-show="myForm.reciverAddress.$dirty && myForm.reciverAddress.$invalid">
-    <span ng-show="myForm.email.$error.email" >*请输入正确的邮箱</span>
+	<span style="color:red" ng-show="myForm.copyAddress.$dirty && myForm.copyAddress.$invalid">
+    <span ng-show="myForm.copyAddress.$error.copyAddress." >*请输入正确的邮箱</span>
 	</p>
 	
 	<p>
@@ -89,9 +85,20 @@ li a:hover {
 
 </form>
 <script>
-	var app = angular.module('myApp', []);
-	app.controller('myCtrl', function($scope) {
+	var myApp = angular.module('myApp', []);
+	myApp.controller('myCtrl', function($scope) {
+		$scope.reciverAddress="";
+		$scope.copyAddress="";
+		$scope.myTopic="";
+		$scope.myText="";
+		$scope.cancel=function(){
+			$scope.reciverAddress="";
+			$scope.copyAddress="";
+			$scope.myTopic="";
+			$scope.myText="";
+		}
 	});
+
 </script>
 </body>
 </html>
